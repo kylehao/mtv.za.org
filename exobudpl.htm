@@ -1,0 +1,159 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>ExoBUD MP</title>
+<meta name="Author" content="ExoBUD, Jinwoong Yu">
+<meta name="Keywords" content="ExoBUD MP">
+<meta name="Description" content="asf,asx,wma,wmx,wmv,wvx,mp3,wav,mid 网站媒体播放程序">
+<link rel="stylesheet" type="text/css" href="exobudpl.css">
+<!-- 
+============================================================【程序信息及版权宣告】====
+ExoBUD MP(II) v4.1tc+ [Traditional Chinese Version]
+Copyright(Pe) 1999-2003 Jinwoong Yu[ExoBUD], Kendrick Wong[kiddiken.net].yune_lee[liyu.net]
+======================================================================================
+程序原作者: 庾珍雄(Jinwoong Yu) 
+个人网站: http://exobud.nayana.org 
+电子邮件: exobud@hanmail.net
+繁体中文化作者: 惊直(Kendrick Wong/kiddiken)
+个人网站: http://kiddiken.net
+电子邮件: webmaster@kiddiken.net
+简体中文化作者: liyu(yune_lee)
+个人网站: http://www.liyu.net
+电子邮件: yune_lee@163.net
+0ICQ 账号: 4410162
+发表日期: 2003.01.10(此版本原韩文版) 
+发表日期: 2003.03.23(繁体中文首个版本)
+发表日期: 2003.05.22(简体中文首个版本)
+======================================================================================
+-->
+<script language="JavaScript">
+<!--
+var via = parent;
+var write_via = "parent";
+var iLoc = self.location.href;
+// 如果您是面板制作者(或播放器的进阶使用者)，想要将播放清单的内容，固定显示在页面上某个框架，
+// 则上面这几个变量可能会对你有帮助。
+// "via" 这个变量，是代表播放器本身 (exobud.htm) 的位置，相对于播放清单 (exobudpl.htm) 而言。
+// 如果您想要将播放清单嵌入使用者定义的框架 (frameset或iframe)，
+// "via" 的设定值应为 "top.使用者定义的框架名称..." ，而 top 就是指以 index.htm(php) 为起始。
+function playSel(){via.wmpStop();via.startExobud();}
+function refreshPl(){self.location=iLoc;}
+function chkSel(){via.chkAllSel();refreshPl();}
+function chkDesel(){via.chkAllDesel();refreshPl();}
+function dspList(n){
+var elmABlock = 20; // 设定每页可显示多少个播放项目
+var totElm = via.intMmCnt;
+var totBlock = Math.floor((via.intMmCnt-1) / elmABlock)+1;
+var cblock;
+if(n==null){cblock=1;} else {cblock=n;}
+var seed;
+var limit;
+if(cblock < totBlock){
+seed=elmABlock*(cblock-1); limit=cblock*elmABlock-1;
+} else {
+seed=elmABlock*(cblock-1); limit=totElm-1;
+}
+if(via.intMmCnt > 0){
+var list_num=0;
+mmList.innerHTML="<p><br><br>";
+pageList.innerHTML=" &nbsp; ";
+for (var i=seed; i <= limit; i++){
+list_num = i + 1;
+if(via.objMmInfo[i].selMm=="t"){
+elm = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=checkbox onClick=\"" + write_via + ".chkItemSel(" + i + ");\" checked";
+elm += " title='切换是否要播放此曲目' style='cursor:hand'>";
+} else {
+elm = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=checkbox onClick=\"" + write_via + ".chkItemSel(" + i + ");\"";
+elm += " title='切换是否要播放此曲目' style='cursor:hand'>";
+}
+elm += "&nbsp;<span lang=ko></span>" + list_num + ". ";
+elm += "<a href=\"javascript:" + write_via + ".selPlPlay(" + i + ");\"";
+elm += " title='点一下播放此单一曲目'>";
+if(via.objMmInfo[i].mmTit =="nAnT"){
+elm += "等待从服务器读取标题...";
+} else {
+elm += via.objMmInfo[i].mmTit;
+}
+elm += "</a><br>";
+mmList.innerHTML=mmList.innerHTML+elm;
+}
+for(var j=1; j<=totBlock; j++){
+page = "<a href=\"javascript:dspList(" + j + ")\">[" + j + "]<a> ";
+pageList.innerHTML=pageList.innerHTML+page;
+}
+pageInfo.innerHTML = "page: " + cblock + " / " + totBlock;
+} else {
+mmList.innerHTML = "<br><br><br><br><div align=center>无法显示播放列表</div>";
+}
+}
+//-->
+</script>
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+//-->
+</script>
+<noscript></head></noscript>
+<SCRIPT language=JavaScript>
+function click(e) {
+if (document.all) {
+if (event.button==2||event.button==3) {
+oncontextmenu='return false';
+}
+}
+if (document.layers) {
+if (e.which == 3) {
+oncontextmenu='return false';
+}
+}
+}
+if (document.layers) {
+document.captureEvents(Event.MOUSEDOWN);
+}
+document.onmousedown=click;
+document.oncontextmenu = new Function("return false;")
+</SCRIPT>
+<body leftmargin=0
+topmargin=0 marginwidth=0 marginheight=0 onLoad="dspList()" onDragStart="return false" onSelectStart="return false" bgcolor="transparent">
+
+<!-- 在播放清单窗口显示播放清单内容、跳页及其它选项的部份 -->
+<div id="Layer1" style="position:absolute; width:166px; height:13px; z-index:1; left: 167px; top: 288px; visibility: hidden;"> 
+  <table width="704" height="460" border=0 cellpadding=0 cellspacing=0>
+    <tr> 
+      <td height=20 align=left valign="top"><font color="#FFFFFF">|</font><img src=https://cdn.jsdelivr.net/gh/kylehao/public/mp3_change_img/pl_btn_allsel.gif" width=35 height=10 align=absmiddle border=0
+onClick="chkSel()" style="cursor:hand" title="全部选取"><font color="#FFFFFF">|</font><img src=https://cdn.jsdelivr.net/gh/kylehao/public/mp3_change_img/pl_btn_desel.gif" width=35 height=10 align=absmiddle border=0
+onClick="chkDesel()" style="cursor:hand" title="全部不选"><font color="#FFFFFF">|</font><img src=https://cdn.jsdelivr.net/gh/kylehao/public/mp3_change_img/pl_btn_playsel.gif" width=35 height=10 align=absmiddle border=0
+onClick="playSel()" style="cursor:hand" title="播放已选取的曲目"><font color="#FFFFFF">|</font><a href="javascript:history.back()"><img src=https://cdn.jsdelivr.net/gh/kylehao/public/mp3_change_img/pl_btn_winclose.gif" width=35 height=10 align=absmiddle border=0 style="cursor:hand" title="关闭播放清单窗口"></a><font color="#FFFFFF">|</font></td></tr></table></div>
+<table width=100% height=100% border=0 align="left" cellpadding=0 cellspacing=0 bgcolor="transparent">
+  <tr> 
+    <td height="50"></td>
+  </tr>
+  <tr> 
+    <td width="90" colspan="1"></td><td height="450" colspan="3" valign=top> <div id="mmList"></div></td>
+  </tr>
+  <tr> 
+    <td width="10" colspan="1"></td><td height="10" colspan="3" valign=top> <div id="pageList"></div></td>
+  </tr>
+  <tr> 
+    <td height=2 colspan="3"></td>
+  </tr>
+
+</table>
+
+<div style="position: absolute; width: 520px; height: 390px; z-index: 1; left:390px; top:80px" id="layer1">
+<OBJECT codeBase=http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=4,0,2,0 
+      width=520 height=390 classid=clsid:D27CDB6E-AE6D-11cf-96B8-444553540000>
+	<PARAM NAME="movie" VALUE=https://cdn.jsdelivr.net/gh/kylehao/public/mp3_change_img/leaf.swf">
+		<PARAM NAME="quality" VALUE="High"><PARAM NAME="wmode" VALUE="transparent">
+                  <embed src=https://cdn.jsdelivr.net/gh/kylehao/public/mp3_change_img/leaf.swf" quality=High 
+      pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" 
+      type="application/x-shockwave-flash" width="520" height="390" 
+      wmode="transparent"></embed> </OBJECT></div>
+<div id="dis">
+</body>
+</html>

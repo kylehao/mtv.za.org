@@ -1,0 +1,24 @@
+A {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+A:link {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: #cccccc; TEXT-DECORATION: none
+}
+A:active {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #ffff99; TEXT-DECORATION: none
+}
+BODY {
+	BACKGROUND-POSITION: center top; BACKGROUND-ATTACHMENT: fixed; BACKGROUND-IMAGE: none; MARGIN: 0px; CURSOR: crosshair; BACKGROUND-REPEAT: repeat; FONT-SIZE: 8pt; COLOR: #999999; FONT-FAMILY: 'Tahoma','Verdana','Arial'
+}
+#TOPBG {
+	BACKGROUND-COLOR: transparent; filter:alpha(opacity:30);opacity:0.3;
+}
+TD {
+	FONT-SIZE: 8pt; COLOR: #fbfbb0; FONT-FAMILY: 'Tahoma','Verdana','Arial'
+}
